@@ -1,0 +1,43 @@
+stages:
+  - build
+  - deploy
+
+wheel:
+  image: python:3.7
+  stage: build
+
+  before_script:
+    - python -V
+    - pip install -U setuptools wheel
+
+  script:
+    - python setup.py sdist bdist_wheel
+
+  artifacts:
+    paths:
+      - dist
+    expire_in: 1d
+
+  only:
+    - tags
+
+wheel:deploy:
+  image: python:3.7
+  stage: deploy
+
+  dependencies:
+    - wheel
+
+  before_script:
+    - python -V
+    - pip install twine
+
+  script:
+    - twine upload -u $PYPI_USER -p $PYPI_TOKEN dist/*
+
+  only:
+    refs:
+      - tags
+    variables:
+      - $PYPI_USER
+      - $PYPI_TOKEN
