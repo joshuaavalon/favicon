@@ -1,6 +1,14 @@
 # favicon
+[![PyPI](https://img.shields.io/pypi/v/joshuaavalon-favicon.svg)](https://pypi.org/project/joshuaavalon-favicon) 
+[![License](https://img.shields.io/github/license/joshuaavalon/favicon.svg)](https://github.com/joshuaavalon/favicon/blob/master/LICENSE) 
 
 Download favicon from urls
+
+## Installation
+
+```bash
+pip install joshuaavalon-favicon
+```
 
 ## Usage
 
